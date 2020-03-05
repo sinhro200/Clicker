@@ -63,9 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ClickCatcherScript.cs" />
     <Compile Include="Assets\Scripts\CubeController.cs" />
     <Compile Include="Assets\Scripts\CubeSpawner\Spawner.cs" />
     <Compile Include="Assets\Scripts\CubeSpawner\SpawnerBody.cs" />
+    <Compile Include="Assets\Scripts\DestroyerBody.cs" />
     <Compile Include="Assets\Scripts\Direction.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/sinhr/Desktop/Unity lessons/02_homework/Clicker/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

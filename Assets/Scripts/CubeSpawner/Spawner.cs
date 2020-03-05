@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerScript : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private float CoolDown;
+    private float CoolDown = 2;
+    [SerializeField]
+    private float velocity = 10;
 
     private float time;
 
@@ -24,7 +26,7 @@ public class SpawnerScript : MonoBehaviour
         if (time > CoolDown)
         {
             SpawnerBody sb = spawners[Random.Range(0, spawners.Length )];
-            sb.spawn();
+            sb.spawn(velocity);
 
             time -= CoolDown;
         }
