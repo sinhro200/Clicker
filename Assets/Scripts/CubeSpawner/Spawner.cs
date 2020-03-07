@@ -8,6 +8,8 @@ public class Spawner : MonoBehaviour
     private float CoolDown = 2;
     [SerializeField]
     private float velocity = 10;
+    [SerializeField]
+    private GameObject spawn_object;
 
     private float time;
 
@@ -26,7 +28,7 @@ public class Spawner : MonoBehaviour
         if (time > CoolDown)
         {
             SpawnerBody sb = spawners[Random.Range(0, spawners.Length )];
-            sb.spawn(velocity);
+            sb.spawn(spawn_object,velocity);
 
             time -= CoolDown;
         }

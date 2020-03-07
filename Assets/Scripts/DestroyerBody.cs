@@ -10,18 +10,15 @@ public class DestroyerBody : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        string s = "trigger exit";
         GameObject go = collision.gameObject;
         if (go.CompareTag("DestroyableObject"))
         {
-            s+="\n-----with DestroyableObject";
-            var cubeController = go.GetComponent<CubeController>();
+            var cubeController = go.GetComponent<Destroyable>();
             if (cubeController != null)
             {
                 cubeController.destroy();
             }
         }
-        Debug.Log(s);
     }
     /*private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,7 +27,7 @@ public class DestroyerBody : MonoBehaviour
         if (go.CompareTag("DestroyableObject"))
         {
             Debug.Log("-----with DestroyableObject");
-            var cubeController = go.GetComponent<CubeController>();
+            var cubeController = go.GetComponent<Destroyable>();
             if (cubeController != null)
             {
                 cubeController.destroy();

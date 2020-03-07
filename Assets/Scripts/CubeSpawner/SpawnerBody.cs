@@ -6,8 +6,6 @@ public class SpawnerBody : MonoBehaviour
 {
     [SerializeField]
     private Direction dir;
-    [SerializeField]
-    private GameObject obj;
 
     private Vector2 leftTop;
     private Vector2 rightBot;
@@ -21,16 +19,25 @@ public class SpawnerBody : MonoBehaviour
         leftTop = new Vector2(center.x - transform.x/2, center.y + transform.y / 2);
         rightBot = new Vector2(center.x + transform.x / 2, center.y - transform.y / 2);
 
-        obj = obj == null ? new GameObject() : obj;
+        //obj = obj == null ? new GameObject() : obj;
     }
 
-    public void spawn(float velocity)
+    public void spawn(GameObject gameObj,float velocity)
     {
+        if (gameObj == null)
+            return;
+        
         Vector2 pos = getRandomPosition();
+        
+        GameObject newInstance = Instantiate(gameObj, pos, Quaternion.identity);
 
-        GameObject newInstance = Instantiate(obj, pos, Quaternion.identity);
-        var vel = getNormVelocity()*velocity;
+        var vel = getNormVelocity() * velocity;
         newInstance.GetComponent<Rigidbody2D>().velocity = vel;
+
+        var objVel = newInstance.GetComponent<Rigidbody2D>().velocity;
+
+        Debug.Log(vel.x + " " + vel.y );
+        //newInstance.GetComponent<Rigidbody>().velocity = vel;
     }
 
     private Vector2 getNormVelocity()
