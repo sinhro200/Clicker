@@ -3,7 +3,10 @@ using UnityEngine.EventSystems;
 
 public class ClickCatcherScript : MonoBehaviour
 {
-    
+    [SerializeField]
+    private ScoreController scoreController;
+    [SerializeField]
+    private CountObjController coco;
     void Start()
     {
         
@@ -14,14 +17,55 @@ public class ClickCatcherScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("mouse down");
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), -Vector2.up);
-
-            if (hit.collider != null && hit.transform.CompareTag("DestroyableObject"))
-                hit.transform.gameObject.GetComponent<Destroyable>().destroy();
+            test4_works();
         }
     }
 
+    public void test4_works()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray);
+
+        int cnt_to_destroy = 0;
+        foreach (RaycastHit2D hit in hits)
+        {
+            
+            
+            if (hit.collider.CompareTag("DestroyableObject"))
+            {
+                cnt_to_destroy++;
+                hit.collider.gameObject.GetComponent<Destroyable>().destroy();
+            }
+        }
+        if (cnt_to_destroy != 0)
+        {
+            scoreController.destroyOnClick(cnt_to_destroy);
+            coco.remove(cnt_to_destroy);
+        }
+
+    }
+    public void ScreenMouseRay()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 5f;
+
+        Vector2 v = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Collider2D[] col = Physics2D.OverlapPointAll(v);
+        
+
+        if (col.Length > 0)
+        {
+            foreach (Collider2D c in col)
+            {
+                //Debug.Log("Collided with: " + c.collider2D.gameObject.name);
+                var targetPos = c.gameObject.transform.position;
+                Debug.Log(c.gameObject.tag);
+
+            }
+        }
+    }
     private void test3()
     {
         if (Input.GetMouseButtonDown(0) )
@@ -34,7 +78,7 @@ public class ClickCatcherScript : MonoBehaviour
             if (Physics.Raycast(ray,out hit))
             {
                 Debug.Log("hit smth (" + hit.collider.tag + ")");
-                if (hit.collider.tag == "destroyableObject")
+                if (hit.collider.CompareTag("DestroyableObject"))
                 {
                     Debug.Log("----it was destroyableObject");
                     hit.collider.gameObject.GetComponent<Destroyable>().destroy();
@@ -49,7 +93,6 @@ public class ClickCatcherScript : MonoBehaviour
         if (hit.collider != null )
             Debug.Log("Dot Hit : " + hit.transform.tag);
     }
-
     private void test2()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

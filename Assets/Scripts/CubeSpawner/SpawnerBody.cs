@@ -36,7 +36,7 @@ public class SpawnerBody : MonoBehaviour
 
         var objVel = newInstance.GetComponent<Rigidbody2D>().velocity;
 
-        Debug.Log(vel.x + " " + vel.y );
+        //Debug.Log(vel.x + " " + vel.y );
         //newInstance.GetComponent<Rigidbody>().velocity = vel;
     }
 
