@@ -27,19 +27,54 @@ public class SpawnerBody : MonoBehaviour
         if (gameObj == null)
             return;
         
-        Vector2 pos = getRandomPosition();
+        Vector2 pos = getPosition();
         
         GameObject newInstance = Instantiate(gameObj, pos, Quaternion.identity);
 
         var vel = getNormVelocity() * velocity;
         newInstance.GetComponent<Rigidbody2D>().velocity = vel;
 
-        var objVel = newInstance.GetComponent<Rigidbody2D>().velocity;
+        stretch(newInstance);
 
+        //var objVel = newInstance.GetComponent<Rigidbody2D>().velocity;
         //Debug.Log(vel.x + " " + vel.y );
         //newInstance.GetComponent<Rigidbody>().velocity = vel;
     }
 
+    private Vector2 getPosition()
+    {
+        switch (dir)
+        {
+            case Direction.Up:
+            case Direction.Down:
+                return getXCenterPosition();
+            case Direction.Right:
+            case Direction.Left:
+                return getYCenterPosition();
+            default:
+                return getRandomPosition();
+        }
+        
+    }
+    private void stretch(GameObject obj)
+    {
+        //Bounds bounds = obj.GetComponent<MeshFilter>().sharedMesh.bounds;
+
+        switch (dir)
+        {
+            case Direction.Up:
+            case Direction.Down:
+                obj.transform.localScale = new Vector3(20f, obj.transform.localScale.y, obj.transform.localScale.z);
+                break;
+            case Direction.Right:
+            case Direction.Left:
+                obj.transform.localScale = new Vector3(obj.transform.localScale.x, 10f, obj.transform.localScale.z);
+                break;
+
+            default:
+                break;
+        }
+    }
     private Vector2 getNormVelocity()
     {
         switch (dir)
@@ -59,5 +94,14 @@ public class SpawnerBody : MonoBehaviour
     private Vector2 getRandomPosition()
     {
         return new Vector2(Random.Range(leftTop.x, rightBot.x), Random.Range(leftTop.y, rightBot.y));
+    }
+
+    private Vector2 getXCenterPosition()
+    {
+        return new Vector2((leftTop.x + rightBot.x) / 2, Random.Range(leftTop.y, rightBot.y));
+    }
+    private Vector2 getYCenterPosition()
+    {
+        return new Vector2(Random.Range(leftTop.x, rightBot.x), (leftTop.y + rightBot.y) / 2);
     }
 }

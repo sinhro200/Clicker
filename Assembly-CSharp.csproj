@@ -72,6 +72,8 @@
     <Compile Include="Assets\Scripts\Difficulty\DifficultyController.cs" />
     <Compile Include="Assets\Scripts\Difficulty\DifficultyCore.cs" />
     <Compile Include="Assets\Scripts\Direction.cs" />
+    <Compile Include="Assets\Scripts\GameOverBehaviour.cs" />
+    <Compile Include="Assets\Scripts\GameOverPanel.cs" />
     <Compile Include="Assets\Scripts\IntUnityEvent.cs" />
     <Compile Include="Assets\Scripts\ScoreController.cs" />
     <Compile Include="Assets\Scripts\ScoreLogic.cs" />

@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
     private float time;
     private float cooldown;
     private float velocity;
+    private int prev_num_body;
 
     SpawnerBody[] spawners;
     void Start()
@@ -26,6 +27,8 @@ public class Spawner : MonoBehaviour
         time = 0;
         cooldown = begin_cooldown;
         velocity = begin_velocity;
+
+        prev_num_body = nextRandom(prev_num_body, 0, spawners.Length);
     }
 
     void Update()
@@ -39,11 +42,23 @@ public class Spawner : MonoBehaviour
 
             if (coco.can_add())
             {
-                SpawnerBody sb = spawners[Random.Range(0, spawners.Length)];
+                int num_body = nextRandom(prev_num_body, 0, spawners.Length);
+                prev_num_body = num_body;
+                SpawnerBody sb = spawners[num_body];
                 sb.spawn(spawn_object, velocity);
                 coco.add();
             }
         }
+    }
+
+    private int nextRandom(int prevRandom, int min, int  max)
+    {
+        int rnd = 0;
+        do
+        {
+            rnd = Random.Range(min, max);
+        } while (rnd == prevRandom);
+        return rnd;
     }
 
     private SpawnerBody[] getSpawnerBodies()

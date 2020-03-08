@@ -30,12 +30,16 @@ public class ClickCatcherScript : MonoBehaviour
         int cnt_to_destroy = 0;
         foreach (RaycastHit2D hit in hits)
         {
-            
-            
+            //Debug.Log(hit.collider.tag);
+
             if (hit.collider.CompareTag("DestroyableObject"))
             {
                 cnt_to_destroy++;
                 hit.collider.gameObject.GetComponent<Destroyable>().destroy();
+            }
+            else 
+            {
+                scoreController.missedClick();
             }
         }
         if (cnt_to_destroy != 0)
