@@ -34,6 +34,10 @@ public class SpawnerBody : MonoBehaviour
         var vel = getNormVelocity() * velocity;
         newInstance.GetComponent<Rigidbody2D>().velocity = vel;
 
+<<<<<<< Updated upstream
+=======
+        //stretch(newInstance);
+>>>>>>> Stashed changes
 
         var objVel = newInstance.GetComponent<Rigidbody2D>().velocity;
 
