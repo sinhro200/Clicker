@@ -63,9 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ClickCatcherScript.cs" />
     <Compile Include="Assets\Scripts\CountObjController.cs" />
-    <Compile Include="Assets\Scripts\CubeSpawner\Spawner.cs" />
     <Compile Include="Assets\Scripts\CubeSpawner\SpawnerBody.cs" />
     <Compile Include="Assets\Scripts\Destroyable.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
@@ -73,8 +71,6 @@
     <Compile Include="Assets\Scripts\Difficulty\DifficultyCore.cs" />
     <Compile Include="Assets\Scripts\Direction.cs" />
     <Compile Include="Assets\Scripts\IntUnityEvent.cs" />
-    <Compile Include="Assets\Scripts\ScoreController.cs" />
-    <Compile Include="Assets\Scripts\ScoreLogic.cs" />
     <Compile Include="Assets\Scripts\UIBehaviour.cs" />
     <None Include="Assets\Pic\White.shader" />
     <Reference Include="Unity.Timeline.Editor">
