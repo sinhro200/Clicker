@@ -18,11 +18,11 @@ public class CountObjController : MonoBehaviour
     {
         return (_currCount < MaxCount);
     }
-    public void Decrease(int cnt = 1)
+    public void DecreaseCount(int cnt = 1)
     {
         _currCount -= cnt;
     }
-    public void Increase(int cnt = 1)
+    public void IncreaseCount(int cnt = 1)
     {
         _currCount += cnt;
     }

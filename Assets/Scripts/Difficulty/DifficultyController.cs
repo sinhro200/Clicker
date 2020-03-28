@@ -11,14 +11,24 @@ public class DifficultyController : MonoBehaviour
 
     private int _prevLevel = 1;
 
+    private void Start()
+    {
+        Debug.Log("Level updated to " + _prevLevel + " \n Recharge [" + 
+            DifficultyCore.CalcRecharge(Spawner.BeginRecharge, _prevLevel) + 
+            "]  Velocity [" + DifficultyCore.CalcVelocity(Spawner.BeginVelocity, _prevLevel) + "]");
+    }
     void FixedUpdate()
     {
         int level = CalcLevel(ScoreController.CurrScore());
         if (level != _prevLevel)
         {
-            Spawner.UpdateRecharge(DifficultyCore.CalcRecharge(Spawner.BeginRecharge,level));
-            Spawner.UpdateVelocity(DifficultyCore.CalcVelocity(Spawner.BeginVelocity, level));
+            float recharge = DifficultyCore.CalcRecharge(Spawner.BeginRecharge, level);
+            float vel = DifficultyCore.CalcVelocity(Spawner.BeginVelocity, level);
+            Spawner.UpdateRecharge(recharge);
+            Spawner.UpdateVelocity(vel);
             _prevLevel = level;
+
+            Debug.Log("Level updated to " + level + " \n Recharge [" + recharge + "]  Velocity [" + vel + "]");
         }
     }
 

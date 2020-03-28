@@ -6,27 +6,30 @@ public class ScoreController : MonoBehaviour
     
     public ScoreLogic ScoreLogic;
     public IntUnityEvent ChangeScoreEvent;
-    public int BeginScore = 20;
+
+
+    private int _score;
 
     private void Start()
     {
-        ChangeScoreEvent.Invoke(BeginScore);
+        _score = ScoreLogic.BeginScore;
+        ChangeScoreEvent.Invoke(_score);
     }
 
     public void DestroyOnClick(int countDestroyable)
     {
-        BeginScore = ScoreLogic.UpdateScore(BeginScore,ScoreLogic.DestroyType.OnClick, countDestroyable);
-        ChangeScoreEvent.Invoke(BeginScore);
+        _score = ScoreLogic.UpdateScore(_score,ScoreLogic.DestroyType.OnClick, countDestroyable);
+        ChangeScoreEvent.Invoke(_score);
     }
 
     public void DestroyOnOut(int count = 1)
     {
-        BeginScore = ScoreLogic.UpdateScore(BeginScore, ScoreLogic.DestroyType.OnOut);
-        ChangeScoreEvent.Invoke(BeginScore);
+        _score = ScoreLogic.UpdateScore(_score, ScoreLogic.DestroyType.OnOut);
+        ChangeScoreEvent.Invoke(_score);
     }
 
     public int CurrScore()
     {
-        return BeginScore;
+        return _score;
     }
 }

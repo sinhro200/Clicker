@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     public float BeginVelocity = 10;
     public GameObject SpawnPrefab;
     public CountObjController CountObjController;
-    public SpawnerBody[] Spawners;
+    public SpawnerBody[] spawners;
 
     private float _time;
     private float _recharge;
@@ -33,9 +33,9 @@ public class Spawner : MonoBehaviour
 
             if (CountObjController.CanAdd())
             {
-                SpawnerBody sb = Spawners[Random.Range(0, Spawners.Length)];
+                SpawnerBody sb = spawners[Random.Range(0, spawners.Length)];
                 sb.spawn(SpawnPrefab, _velocity);
-                CountObjController.Increase();
+                CountObjController.IncreaseCount();
             }
         }
     }

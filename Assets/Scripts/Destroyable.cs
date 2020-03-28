@@ -7,7 +7,7 @@ public class Destroyable : MonoBehaviour
 
     public void destroy()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
         Destroy(gameObject);
         
     }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ScoreLogic : MonoBehaviour
 {
+    public int BeginScore = 20; 
     public int IncScoreOnClick = 2;
     public int IncScoreOnOut = -2;
     public int CoefficOnMultClick = 2;
+    
 
     public int UpdateScore(int score,DestroyType dt,int multCount = 1)
     {

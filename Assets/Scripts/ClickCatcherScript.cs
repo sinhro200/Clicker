@@ -3,16 +3,9 @@ using UnityEngine.EventSystems;
 
 public class ClickCatcherScript : MonoBehaviour
 {
-    [SerializeField]
-    private ScoreController ScoreController;
-    [SerializeField]
-    private CountObjController CountObjControl;
-    void Start()
-    {
-        
-    }
-
-    
+    public ScoreController ScoreController;
+    public CountObjController CountObjControl;
+  
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -41,7 +34,7 @@ public class ClickCatcherScript : MonoBehaviour
         if (cntToDestroy != 0)
         {
             ScoreController.DestroyOnClick(cntToDestroy);
-            CountObjControl.Increase(cntToDestroy);
+            CountObjControl.DecreaseCount(cntToDestroy);
         }
 
     }

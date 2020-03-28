@@ -9,10 +9,10 @@ public class DifficultyCore : MonoBehaviour
     
     public float CalcVelocity(float velocity,int level)
     {
-        return velocity*Mathf.Pow(VelocityMult, level);
+        return velocity*Mathf.Pow(VelocityMult, level-1);
     }
     public float CalcRecharge(float recharge, int level)
     {
-        return recharge / Mathf.Pow(RechargeMult, level);
+        return recharge / Mathf.Pow(RechargeMult, level-1);
     }
 }

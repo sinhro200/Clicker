@@ -16,7 +16,7 @@ public class Destroyer : MonoBehaviour
             if (cubeController != null)
             {
                 cubeController.destroy();
-                CountObjController.Increase();
+                CountObjController.DecreaseCount();
                 ScoreController.DestroyOnOut();
             }
         }
