@@ -1,17 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
-    [SerializeField]
-    private CountObjController coco;
-    [SerializeField]
-    private ScoreController scco;
-    void Start()
-    {
-        
-    }
+    public CountObjController CountObjController;
+    public ScoreController ScoreController;
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.gameObject.activeSelf)
@@ -23,8 +16,8 @@ public class Destroyer : MonoBehaviour
             if (cubeController != null)
             {
                 cubeController.destroy();
-                coco.remove();
-                scco.destroyOnOut();
+                CountObjController.Increase();
+                ScoreController.DestroyOnOut();
             }
         }
     }

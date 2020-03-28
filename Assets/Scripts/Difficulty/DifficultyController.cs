@@ -4,39 +4,26 @@ using UnityEngine;
 
 public class DifficultyController : MonoBehaviour
 {
-    [SerializeField]
-    private Spawner spawner;
-    [SerializeField]
-    private ScoreController scco;
-    [SerializeField]
-    private int points_by_level = 50;
-    [SerializeField]
-    private DifficultyCore difficultyCore;
+    public Spawner Spawner;
+    public ScoreController ScoreController;
+    public int PointsByLevel = 50;
+    public DifficultyCore DifficultyCore;
 
-    private int prevLevel = 1;
-    private void Start()
-    {
-        
-    }
+    private int _prevLevel = 1;
 
     void FixedUpdate()
     {
-        int level = getLevel(scco.currScore());
-        if (level <= 0)
+        int level = CalcLevel(ScoreController.CurrScore());
+        if (level != _prevLevel)
         {
-            Debug.Log("level is " + level);
-        }
-        else if (level != prevLevel)
-        {
-
-            spawner.updateCooldown(difficultyCore.getCooldown(spawner.begin_cooldown,level));
-            spawner.updateVelocity(difficultyCore.getVelocity(spawner.begin_velocity, level));
-            prevLevel = level;
+            Spawner.UpdateRecharge(DifficultyCore.CalcRecharge(Spawner.BeginRecharge,level));
+            Spawner.UpdateVelocity(DifficultyCore.CalcVelocity(Spawner.BeginVelocity, level));
+            _prevLevel = level;
         }
     }
 
-    private int getLevel(int score)
+    private int CalcLevel(int score)
     {
-        return score / points_by_level + 1;
+        return score / PointsByLevel + 1;
     }
 }

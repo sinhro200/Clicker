@@ -4,18 +4,10 @@ using UnityEngine;
 
 public class Destroyable : MonoBehaviour
 {
-    
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
+
     public void destroy()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         Destroy(gameObject);
         
     }

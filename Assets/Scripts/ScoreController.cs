@@ -3,36 +3,30 @@ using UnityEngine.Events;
 
 public class ScoreController : MonoBehaviour
 {
-    [SerializeField]
-    private ScoreLogic slogic;
-    [SerializeField]
-    private IntUnityEvent _changeScore;
-    [SerializeField]
-    private int beginScore = 20;
+    
+    public ScoreLogic ScoreLogic;
+    public IntUnityEvent ChangeScoreEvent;
+    public int BeginScore = 20;
 
     private void Start()
     {
-        _changeScore.Invoke(beginScore);
+        ChangeScoreEvent.Invoke(BeginScore);
     }
 
-    public void destroyOnClick(int countDestroyable)
+    public void DestroyOnClick(int countDestroyable)
     {
-        string s = "old score : " + beginScore;
-        beginScore = slogic.updateScore(beginScore,ScoreLogic.DestroyType.OnClick, countDestroyable);
-        s += " ;  new score : " + beginScore;
-        _changeScore.Invoke(beginScore);
-        Debug.Log(s);
+        BeginScore = ScoreLogic.UpdateScore(BeginScore,ScoreLogic.DestroyType.OnClick, countDestroyable);
+        ChangeScoreEvent.Invoke(BeginScore);
     }
 
-    public void destroyOnOut(int count = 1)
+    public void DestroyOnOut(int count = 1)
     {
-        beginScore = slogic.updateScore(beginScore, ScoreLogic.DestroyType.OnOut);
-        _changeScore.Invoke(beginScore);
-        Debug.Log("after out : " + beginScore);
+        BeginScore = ScoreLogic.UpdateScore(BeginScore, ScoreLogic.DestroyType.OnOut);
+        ChangeScoreEvent.Invoke(BeginScore);
     }
 
-    public int currScore()
+    public int CurrScore()
     {
-        return beginScore;
+        return BeginScore;
     }
 }

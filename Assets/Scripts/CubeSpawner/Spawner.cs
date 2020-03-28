@@ -4,69 +4,48 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public float BeginRecharge = 2;
+    public float BeginVelocity = 10;
+    public GameObject SpawnPrefab;
+    public CountObjController CountObjController;
+    public SpawnerBody[] Spawners;
 
-    [SerializeField]
-    public float begin_cooldown = 2;
-    [SerializeField]
-    public float begin_velocity = 10;
-    [SerializeField]
-    private GameObject spawn_object;
-    [SerializeField]
-    [InspectorName("Count controller")]
-    private CountObjController coco;
+    private float _time;
+    private float _recharge;
+    private float _velocity;
 
-    private float time;
-    private float cooldown;
-    private float velocity;
-
-    SpawnerBody[] spawners;
+    
     void Start()
     {
-        spawners = getSpawnerBodies();
-        time = 0;
-        cooldown = begin_cooldown;
-        velocity = begin_velocity;
+        _time = 0;
+        _recharge = BeginRecharge;
+        _velocity = BeginVelocity;
     }
 
     void Update()
     {
-        time += Time.deltaTime;
+        _time += Time.deltaTime;
 
-        if (time > cooldown)
+        if (_time > _recharge)
         {
-            time -= cooldown;
+            _time -= _recharge;
 
 
-            if (coco.can_add())
+            if (CountObjController.CanAdd())
             {
-                SpawnerBody sb = spawners[Random.Range(0, spawners.Length)];
-                sb.spawn(spawn_object, velocity);
-                coco.add();
+                SpawnerBody sb = Spawners[Random.Range(0, Spawners.Length)];
+                sb.spawn(SpawnPrefab, _velocity);
+                CountObjController.Increase();
             }
         }
     }
 
-    private SpawnerBody[] getSpawnerBodies()
+    public void UpdateRecharge(float cooldown)
     {
-        List<SpawnerBody> spawners = new List<SpawnerBody>();
-        foreach (var item in gameObject.GetComponentsInChildren<SpawnerBody>())
-        {
-            if (item.CompareTag("SpawnerBody"))
-            {
-                spawners.Add(item);
-            }
-        }
-
-        return spawners.ToArray();
+        this._recharge = cooldown;
     }
-
-    public void updateCooldown(float cooldown)
+    public void UpdateVelocity(float velocity)
     {
-        this.cooldown = cooldown;
-    }
-    public void updateVelocity(float velocity)
-    {
-        Debug.Log(velocity);
-        this.velocity = velocity;
+        this._velocity = velocity;
     }
 }

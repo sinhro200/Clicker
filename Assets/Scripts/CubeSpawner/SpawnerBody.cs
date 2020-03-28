@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class SpawnerBody : MonoBehaviour
 {
-    [SerializeField]
-    private Direction dir;
 
-    private Vector2 leftTop;
-    private Vector2 rightBot;
+    public Direction Dir;
+
+    private Vector2 _leftTop;
+    private Vector2 _rightBot;
 
 
     void Start()
     {
         Vector2 center = gameObject.transform.position;
-        //Debug.Log("Center of Gobj = "+center.x.ToString() + " " + center.y.ToString());
         Vector3 transform = gameObject.transform.localScale;
-        leftTop = new Vector2(center.x - transform.x/2, center.y + transform.y / 2);
-        rightBot = new Vector2(center.x + transform.x / 2, center.y - transform.y / 2);
-
-        //obj = obj == null ? new GameObject() : obj;
+        _leftTop = new Vector2(center.x - transform.x/2, center.y + transform.y / 2);
+        _rightBot = new Vector2(center.x + transform.x / 2, center.y - transform.y / 2);
     }
 
     public void spawn(GameObject gameObj,float velocity)
@@ -27,29 +24,17 @@ public class SpawnerBody : MonoBehaviour
         if (gameObj == null)
             return;
         
-        Vector2 pos = getRandomPosition();
+        Vector2 pos = GetRandomPositionInside();
         
         GameObject newInstance = Instantiate(gameObj, pos, Quaternion.identity);
 
-        var vel = getNormVelocity() * velocity;
+        var vel = GetNormVelocity() * velocity;
         newInstance.GetComponent<Rigidbody2D>().velocity = vel;
-
-
-        //stretch(newInstance);
-
-
-        var objVel = newInstance.GetComponent<Rigidbody2D>().velocity;
-
-        //stretch(newInstance);
-
-
-        //Debug.Log(vel.x + " " + vel.y );
-        //newInstance.GetComponent<Rigidbody>().velocity = vel;
     }
 
-    private Vector2 getNormVelocity()
+    private Vector2 GetNormVelocity()
     {
-        switch (dir)
+        switch (Dir)
         {
             case Direction.Down:
                 return new Vector2(0, -1);
@@ -63,8 +48,8 @@ public class SpawnerBody : MonoBehaviour
         return new Vector2(0, 0);
     }
 
-    private Vector2 getRandomPosition()
+    private Vector2 GetRandomPositionInside()
     {
-        return new Vector2(Random.Range(leftTop.x, rightBot.x), Random.Range(leftTop.y, rightBot.y));
+        return new Vector2(Random.Range(_leftTop.x, _rightBot.x), Random.Range(_leftTop.y, _rightBot.y));
     }
 }

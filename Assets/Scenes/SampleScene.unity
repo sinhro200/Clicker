@@ -287,22 +287,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac432b5e41fed7c428c9c10aa6d43296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slogic: {fileID: 226888527}
-  _changeScore:
+  ScoreLogic: {fileID: 0}
+  ChangeScoreEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 936129746}
-        m_MethodName: setScore
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  beginScore: 20
+      m_Calls: []
+  BeginScore: 20
 --- !u!4 &226888529
 Transform:
   m_ObjectHideFlags: 0
@@ -329,10 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359c9704e4752df498a0b2c863f60252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawner: {fileID: 326814448}
-  scco: {fileID: 226888528}
-  points_by_level: 30
-  difficultyCore: {fileID: 226888531}
+  Spawner: {fileID: 0}
+  ScoreController: {fileID: 0}
+  PointsByLevel: 50
+  DifficultyCore: {fileID: 0}
 --- !u!114 &226888531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,11 +383,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97487e5481d3e3543bed12839c65ef73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  begin_cooldown: 0.5
-  begin_velocity: 2
-  spawn_object: {fileID: 4292876050124859491, guid: fcede5ef6a3097a469b20472e6179a15,
-    type: 3}
-  coco: {fileID: 968300954}
+  BeginRecharge: 2
+  BeginVelocity: 10
+  SpawnPrefab: {fileID: 0}
+  CountObjController: {fileID: 0}
+  spawners:
+  - {fileID: 1382809793}
+  - {fileID: 1495313156}
+  - {fileID: 563023947}
+  - {fileID: 1734375154}
 --- !u!1 &367110409
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,18 +634,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &936129746 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2421508560063710626, guid: 7be8bcf0a227ab146b82c525e0d62056,
-    type: 3}
-  m_PrefabInstance: {fileID: 181968562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6429d152bcf151a4fbc7563bfef953e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &968300953
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6428179a64caaea4982282452ad181fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_count: 10
+  MaxCount: 20
 --- !u!4 &968300955
 Transform:
   m_ObjectHideFlags: 0
@@ -726,8 +707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51aada01979b8d4ab37e5b456662bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreController: {fileID: 226888528}
-  coco: {fileID: 968300954}
+  ScoreController: {fileID: 0}
+  CountObjControl: {fileID: 0}
 --- !u!4 &1023642304
 Transform:
   m_ObjectHideFlags: 0

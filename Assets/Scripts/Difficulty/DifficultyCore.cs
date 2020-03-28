@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class DifficultyCore : MonoBehaviour
 {
-    [SerializeField]
-    private float cooldown_mult = 1.1f;
-    [SerializeField]
-    private float velocity_mult = 1.1f;
+    public float RechargeMult = 1.1f;
+    public float VelocityMult = 1.1f;
     
-    public float getVelocity(float beginVelocity,int level)
+    public float CalcVelocity(float velocity,int level)
     {
-        return beginVelocity*Mathf.Pow(velocity_mult, level);
+        return velocity*Mathf.Pow(VelocityMult, level);
     }
-    public float getCooldown(float beginCooldown, int level)
+    public float CalcRecharge(float recharge, int level)
     {
-        return beginCooldown / Mathf.Pow(cooldown_mult, level);
+        return recharge / Mathf.Pow(RechargeMult, level);
     }
 }

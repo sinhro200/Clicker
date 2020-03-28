@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ScoreLogic : MonoBehaviour
 {
-    [SerializeField] private int score_on_click = 2;
-    [SerializeField] private int score_on_out = -2;
-    [SerializeField] private int coeffic_on_mult_click = 2;
+    public int IncScoreOnClick = 2;
+    public int IncScoreOnOut = -2;
+    public int CoefficOnMultClick = 2;
 
-    public int updateScore(int score,DestroyType dt,int multCount = 1)
+    public int UpdateScore(int score,DestroyType dt,int multCount = 1)
     {
         switch (dt)
         {
             case DestroyType.OnClick:
-                return score += multCount == 1 ? score_on_click : score_on_click * multCount * coeffic_on_mult_click;
+                return score += multCount == 1 ? IncScoreOnClick : IncScoreOnClick * multCount * CoefficOnMultClick;
             case DestroyType.OnOut:
-                return score += score_on_out * multCount;
+                return score += IncScoreOnOut * multCount;
             default:
                 return score;
         }

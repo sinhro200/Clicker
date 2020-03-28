@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class CountObjController : MonoBehaviour
 {
-    [SerializeField]
-    private int max_count = 20;
+
+    public int MaxCount = 20;
     
-    private int curr_count;
+    private int _currCount;
 
     private void Start()
     {
-        curr_count = 0;
+        _currCount = 0;
     }
 
-    public bool can_add()
+    public bool CanAdd()
     {
-        return (curr_count < max_count);
+        return (_currCount < MaxCount);
     }
-    public void remove(int cnt = 1)
+    public void Decrease(int cnt = 1)
     {
-        curr_count -= cnt;
+        _currCount -= cnt;
     }
-    public void add(int cnt = 1)
+    public void Increase(int cnt = 1)
     {
-        curr_count += cnt;
+        _currCount += cnt;
     }
 }
